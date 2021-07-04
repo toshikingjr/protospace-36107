@@ -3,7 +3,7 @@ class PrototypesController < ApplicationController
   before_action :move_to_index, only: :edit
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.includes(:user)
   end
 
   def new
@@ -22,7 +22,7 @@ class PrototypesController < ApplicationController
   def show
     @prototype = Prototype.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all
+    @comments = Comment.includes(:user)
   end
 
   def edit
